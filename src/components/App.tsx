@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import TestFetch from './TestFetch'
 
 //const logo = require('./logo.svg');
 
@@ -14,6 +15,7 @@ class App extends React.Component {
         <p className="App-intro" >
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p> */}
+        <TestFetch />
       </div>
     );
   }

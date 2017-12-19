@@ -5,6 +5,7 @@
     "dependencies": {
         "@types/redux-thunk": "^2.1.0",
         "antd": "^3.0.1",
+        "node-fetch": "^1.7.3",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "react-redux": "^5.0.6",
@@ -24,6 +25,7 @@
     "devDependencies": {
         "@types/jest": "^21.1.8",
         "@types/node": "^8.5.1",
+        "@types/node-fetch": "^1.6.7",
         "@types/react": "^16.0.31",
         "@types/react-dom": "^16.0.3",
         "@types/react-redux": "^5.0.14",
