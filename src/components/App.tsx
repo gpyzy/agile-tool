@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import Login from './Login'
+
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+
 
 class App extends React.Component {
   render() {
@@ -17,7 +20,10 @@ class App extends React.Component {
           >
             <Menu.Item key="1">nav 1</Menu.Item>
             <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
+            <Menu.Item key="3">
+              <Login />
+            </Menu.Item>
+
           </Menu>
         </Header>
         <Layout>

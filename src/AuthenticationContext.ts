@@ -7,3 +7,5 @@ interface AuthenticationContext {
     getCachedUser:Function
 
 }
+
+export default AuthenticationContext;

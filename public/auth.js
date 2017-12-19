@@ -8,7 +8,7 @@ var vstsResourceId = '499b84ac-1321-427f-aa17-267ca6975798';                    
 //=====================================================
 
 // Set up ADAL
-var authContext = new AuthenticationContext({
+window.authContext = new AuthenticationContext({
     clientId: clientId,
     redirectUri: replyUri,
     postLogoutRedirectUri: logoutRedirectUri
