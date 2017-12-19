@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import Login from './Login'
+import Login from './Login/Login'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
