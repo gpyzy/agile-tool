@@ -20,23 +20,21 @@ if (authContext.isCallback(window.location.hash)) {
     var err = authContext.getLoginError();
     if (err) {
         // Handle error
-        document.getElementById('api_response').textContent =
-            'ERROR:\n\n' + err;
+        console.log('Error: \n\n' + err);
     }
 } else {
     // If logged in, get access token and make an API request
     var user = authContext.getCachedUser();
     if (user) {
-        document.getElementById('username').textContent = 'Signed in as: ' + user.userName;
-        document.getElementById('api_response').textContent = 'Getting access token...';
+        console.log('Signed in as: ' + user.userName);
+        console.log('Getting access token...');
 
         // Get an access token to VSTS
         authContext.acquireToken(
             vstsResourceId,
             function (error, token) {
                 if (error || !token) {
-                    document.getElementById('api_response').textContent =
-                        'ERROR:\n\n' + error;
+                    console.log('Error:\n\n' + error);
                     return;
                 }
                 // Use the access token
@@ -45,11 +43,13 @@ if (authContext.isCallback(window.location.hash)) {
         );
     } else {
         document.getElementById('username').textContent = 'Not signed in.';
+        console.log('Not signed in.');
+        alert('Not signed in.');
     }
 }
 // Make an AJAX request to the VSTS REST API and print the response as JSON.
-var getCurrentUserInfo = function (access_token) {
-    document.getElementById('api_response').textContent = 'Calling API...';
+function getCurrentUserInfo(access_token) {
+    console.log('Calling API...');
     var xhr = new XMLHttpRequest();
     //API called with ADAL token
     xhr.open('GET', vstsApi, true);
@@ -57,17 +57,16 @@ var getCurrentUserInfo = function (access_token) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // Parse Successful Response
-            document.getElementById('api_response').textContent =
-                JSON.stringify(JSON.parse(xhr.responseText), null, '  ');
+            console.log(JSON.stringify(JSON.parse(xhr.responseText), null, '  '));
         } else {
             // Handle Error
-            document.getElementById('api_response').textContent =
-                'ERROR:\n\n' + xhr.responseText;
+            console.log('ERROR:\n\n' + xhr.responseText);
         }
     };
     xhr.send();
 }
-var loginButtonPress = function () {
+
+function loginButtonPress() {
     authContext.login();
 
     //hide login button
@@ -77,7 +76,7 @@ var loginButtonPress = function () {
     var logoutButton = document.getElementById('logoutButton');
     logoutButton.style.display = 'block';
 }
-var logoutButtonPress = function () {
+function logoutButtonPress() {
     authContext.logout();
 
     //show login button
