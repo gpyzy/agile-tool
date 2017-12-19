@@ -1,0 +1,16 @@
+version: '2.1'
+services:
+  agile-tool-db:
+    image: microsoft/mssql-server-windows-express
+    stdin_open: true
+    tty: true
+    ports:
+      - "1433:1433"
+    environment:
+      - sa_password=N0password
+      - ACCEPT_EULA=y
+    volumes:
+      - dbfolder:c:\db\
+
+volumes:
+  dbfolder:
