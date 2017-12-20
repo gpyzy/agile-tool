@@ -1,13 +1,23 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import Login from './Login/Login'
+import { Login, UserInfo, loginClicked, logoutClicked } from '../Login'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 
-class App extends React.Component {
+
+interface AppProps {
+  userInfo: UserInfo;
+  dispatch: Dispatch<{}>;
+}
+
+class App extends React.Component<AppProps> {
   render() {
+    const { userInfo, dispatch } = this.props;
+
     return (
       <Layout>
         <Header className="header">
@@ -21,7 +31,7 @@ class App extends React.Component {
             <Menu.Item key="1">nav 1</Menu.Item>
             <Menu.Item key="2">nav 2</Menu.Item>
             <Menu.Item key="3">
-              <Login />
+              <Login handleLogin={(displayName:string, token:string) => dispatch(loginClicked(displayName, token))} />
             </Menu.Item>
 
           </Menu>
@@ -70,4 +80,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  userInfo: state.UserInfo
+});
+
+export default connect(mapStateToProps)(App);
+

@@ -1,4 +1,4 @@
-export type IUser = {
+export type UserInfo = {
     displayName: string,
     token: string
 };
