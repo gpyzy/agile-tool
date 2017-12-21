@@ -6,22 +6,23 @@ import {
 } from './constants/ActionTypes';
 
 const initialState: UserInfo = {
-    displayName: "",
-    token: ""
+    displayName: '',
+    token: ''
 };
 
-
-
-export default handleActions<UserInfo, UserInfo>({
-    [CLICK_LOGIN]: (state: UserInfo, action: Action<UserInfo>): UserInfo => {
-        window.alert(action.type);
-        return {
-            displayName: state.displayName + "_1",
-            token: state.token + "_1"
-        };
-    },
-    [CLICK_LOGOUT]: (state: UserInfo, action: Action<UserInfo>): UserInfo => {
-        window.alert(action.type);
-        return { displayName: '', token:''};
-    }
-}, initialState);
+export default handleActions<UserInfo, UserInfo>(
+    {
+        [CLICK_LOGIN]: (state: UserInfo, action: Action<UserInfo>): UserInfo => {
+            window.alert(action.type);
+            return {
+                displayName: state.displayName + '_1',
+                token: state.token + '_1'
+            };
+        },
+        // [CLICK_LOGOUT]: (state: UserInfo, action: Action<UserInfo>): UserInfo => {
+        //     window.alert(action.type);
+        //     return { displayName: '', token: '' };
+        // }
+        [CLICK_LOGOUT]:(state:UserInfo, action:Action<string>): string=>(''))
+    }, 
+    initialState);
