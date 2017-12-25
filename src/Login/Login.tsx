@@ -2,20 +2,18 @@ import * as React from 'react';
 import { Button } from 'antd';
 import { FormEvent } from 'react';
 import { AdalConfig, Authentication, AuthenticationContext } from 'adal-ts';
-import { UserInfo } from './index';
+// import { UserInfo } from './index';
+// import { UserInfo } from './index';
 
 interface LoginProps {
-    displayName: string;
-    token: string;
-    handleLogin: (displayName: string, token: string) => UserInfo;
-    helloWorld: () => string;
+    // handleLogin: (displayName: string, token: string) => UserInfo;
+    helloWorld: (input: string) => void;
 }
 
 let displayName: string;
 let token: string;
 
 class Login extends React.Component<LoginProps> {
-
     render() {
         return (
             <div>
@@ -50,8 +48,8 @@ class Login extends React.Component<LoginProps> {
         return Authentication.getContext(config);
     }
 
-    public onHelloWorld() {
-        this.props.helloWorld();
+    onHelloWorld() {
+        this.props.helloWorld('jony');
     }
 
     public onLoginClick(event: FormEvent<{}>) {
@@ -64,7 +62,7 @@ class Login extends React.Component<LoginProps> {
             token = authContext.getToken();
             alert(token);
 
-            this.props.handleLogin(displayName, token);
+            // this.props.handleLogin(displayName, token);
         } else {
             displayName = '';
             token = '';

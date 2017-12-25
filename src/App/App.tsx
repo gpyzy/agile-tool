@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import { Login, UserInfo, loginClicked, helloWorld } from '../Login'
+import { Login, UserInfo, helloWorld } from '../Login';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -14,7 +14,7 @@ interface AppProps {
 
 class App extends React.Component<AppProps> {
   render() {
-    const { userInfo, dispatch } = this.props;
+    const { dispatch } = this.props;
 
     return (
       <Layout>
@@ -29,7 +29,8 @@ class App extends React.Component<AppProps> {
             <Menu.Item key="1">nav 1</Menu.Item>
             <Menu.Item key="2">nav 2</Menu.Item>
             <Menu.Item key="3">
-              <Login handleLogin={(displayName: string, token: string) => dispatch(loginClicked(displayName, token))} />
+
+              <Login helloWorld={(input: string) => dispatch(helloWorld(input))} />
             </Menu.Item>
 
           </Menu>
@@ -83,4 +84,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(App);
-

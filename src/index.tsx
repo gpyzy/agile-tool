@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 const initialState = {};
 
-const store: Store<any> = createStore(rootReducer, initialState);
+const store: Store<{}> = createStore(rootReducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>

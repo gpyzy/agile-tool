@@ -18,8 +18,11 @@ const loginClicked = createAction<UserInfo, string, string>(
 //     CLICK_LOGOUT, () => { return { displayName: '', token: '' }; }
 // );
 
-const helloWorld = createAction<string>(
-    CLICK_LOGOUT, () => ('helloworld')
+const helloWorld = createAction<UserInfo, string>(
+    CLICK_LOGOUT, (input: string) => ({
+        displayName: 'helloworld ' + input,
+        token: input
+    })
 );
 
 export {

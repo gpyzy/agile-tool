@@ -23,6 +23,15 @@ export default handleActions<UserInfo, UserInfo>(
         //     window.alert(action.type);
         //     return { displayName: '', token: '' };
         // }
-        [CLICK_LOGOUT]:(state:UserInfo, action:Action<string>): string=>(''))
-    }, 
+        [CLICK_LOGOUT]: (state: UserInfo, action: Action<UserInfo>) => {
+
+            window.alert(action.type);
+            window.alert(action.payload);
+            var aa = action.payload as UserInfo;
+            debugger
+            aa.displayName = aa.displayName;
+            return { displayName: '', token: '' };
+        }
+
+    },
     initialState);
