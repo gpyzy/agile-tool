@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
 import { Login, UserInfo, helloWorld } from '../Login';
+import User from '../Models/User';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -10,6 +11,7 @@ const { Header, Content, Sider } = Layout;
 interface AppProps {
   userInfo: UserInfo;
   dispatch: Dispatch<{}>;
+  UserList: [User];
 }
 
 class App extends React.Component<AppProps> {
