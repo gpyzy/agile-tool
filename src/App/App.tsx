@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Login, UserInfo, helloWorld } from '../Login';
+import { Button } from 'antd/lib/radio';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -29,10 +30,11 @@ class App extends React.Component<AppProps> {
             <Menu.Item key="1">nav 1</Menu.Item>
             <Menu.Item key="2">nav 2</Menu.Item>
             <Menu.Item key="3">
-
               <Login helloWorld={(input: string) => dispatch(helloWorld(input))} />
             </Menu.Item>
-
+            <Menu.Item key="4">
+            <Button></
+            </Menu.Item>
           </Menu>
         </Header>
         <Layout>

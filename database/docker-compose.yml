@@ -1,16 +1,13 @@
 version: '2.1'
 services:
   agile-tool-db:
-    image: microsoft/mssql-server-windows-express
+    image: microsoft/mssql-server-linux:2017-latest
     stdin_open: true
     tty: true
     ports:
       - "1433:1433"
     environment:
-      - sa_password=N0password
+      - SA_PASSWORD=N0password
       - ACCEPT_EULA=y
     volumes:
-      - dbfolder:c:\db\
-
-volumes:
-  dbfolder:
+      - /Users/jony/agile-tool/db:/db
