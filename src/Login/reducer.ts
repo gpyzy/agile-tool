@@ -28,7 +28,7 @@ export default handleActions<UserInfo, UserInfo>(
             window.alert(action.type);
             window.alert(action.payload);
             var aa = action.payload as UserInfo;
-            debugger
+            
             aa.displayName = aa.displayName;
             return { displayName: '', token: '' };
         }

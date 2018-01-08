@@ -1,17 +1,14 @@
 import { createAction } from 'redux-actions';
 
-import {
-    CLICK_LOGIN,
-    CLICK_LOGOUT
-} from './constants/ActionTypes';
+import { CLICK_LOGIN, CLICK_LOGOUT } from './constants/ActionTypes';
 import { UserInfo } from './model';
 
 const loginClicked = createAction<UserInfo, string, string>(
-    CLICK_LOGIN,
-    (displayName: string, token: string) => ({
-        displayName: displayName,
-        token: token
-    })
+  CLICK_LOGIN,
+  (displayName: string, token: string) => ({
+    displayName: displayName,
+    token: token
+  })
 );
 
 // const logoutClicked = createAction<UserInfo>(
@@ -19,15 +16,15 @@ const loginClicked = createAction<UserInfo, string, string>(
 // );
 
 const helloWorld = createAction<UserInfo, string>(
-    CLICK_LOGOUT, (input: string) => ({
-        displayName: 'helloworld ' + input,
-        token: input
-    })
+  CLICK_LOGOUT,
+  (input: string) => ({
+    displayName: 'helloworld ' + input,
+    token: input
+  })
 );
 
 export {
-    loginClicked,
-    // logoutClicked,
-    helloWorld
-
+  loginClicked,
+  // logoutClicked,
+  helloWorld
 };

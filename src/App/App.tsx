@@ -11,7 +11,7 @@ const { Header, Content, Sider } = Layout;
 interface AppProps {
   userInfo: UserInfo;
   dispatch: Dispatch<{}>;
-  UserList: [User];
+  userList: User[];
 }
 
 class App extends React.Component<AppProps> {
@@ -36,7 +36,7 @@ class App extends React.Component<AppProps> {
               />
             </Menu.Item>
             <Menu.Item key="4">
-              <Button>Get List</Button>
+              <Button onClick={()=> dispatch(getUserListClicked())}>Get List</Button>
             </Menu.Item>
           </Menu>
         </Header>
@@ -113,7 +113,8 @@ class App extends React.Component<AppProps> {
 }
 
 const mapStateToProps = state => ({
-  userInfo: state.UserInfo
+  userInfo: state.UserInfo,
+  userList: state.userList
 });
 
 export default connect(mapStateToProps)(App);
