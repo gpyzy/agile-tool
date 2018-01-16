@@ -8,7 +8,7 @@ const getUserListClicked = createAction<Models.User[], Models.User[]>(
   CLICK_GETUSERLIST,
   (userList: Models.User[]) => {
     console.log(CLICK_GETUSERLIST + ' ' + userList.length);
-    return userList;
+    return userList.slice();
   }
 );
 
