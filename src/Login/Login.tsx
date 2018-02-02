@@ -57,21 +57,15 @@ class Login extends React.Component<LoginProps> {
   }
 
   public onLoginClick(event: FormEvent<{}>) {
-    var authContext = this.authenticate();
-    var user = authContext.getUser();
+    let authContext = this.authenticate();
+    let user = authContext.getUser();
 
-    if (user != null) {
-      displayName = user.name;
-      token = authContext.getToken();
-      alert(token);
-
-      // this.props.handleLogin(displayName, token);
-    } else {
-      displayName = '';
-      token = '';
+    if (user == null) {
       authContext.login();
       Authentication.getAadRedirectProcessor().process();
     }
+    displayName = user.name;
+    token = authContext.getToken();
   }
 }
 
