@@ -18,13 +18,7 @@ class Login extends React.Component<LoginProps> {
 
     return (
       <div>
-        <Button
-          onClick={e => {
-            this.onLoginClick(e);
-          }}
-        >
-          {buttonValue}
-        </Button>
+        <Button onClick={this.onLoginClick}>{buttonValue}</Button>
       </div>
     );
   }
@@ -49,7 +43,7 @@ class Login extends React.Component<LoginProps> {
     return Authentication.getContext(config);
   }
 
-  public onLoginClick(event: FormEvent<{}>) {
+  onLoginClick = (event: FormEvent<{}>) => {
     let authContext = this.authenticate();
     let user = authContext.getUser();
 

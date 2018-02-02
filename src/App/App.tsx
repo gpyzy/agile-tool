@@ -9,13 +9,13 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 interface AppProps {
-  userInfo: UserInfo;
+  login: UserInfo;
   dispatch: Dispatch<{}>;
 }
 
 class App extends React.Component<AppProps> {
   render() {
-    const { dispatch, userInfo } = this.props;
+    const { dispatch, login } = this.props;
 
     return (
       <Layout>
@@ -31,7 +31,7 @@ class App extends React.Component<AppProps> {
             <Menu.Item key="2">nav 2</Menu.Item>
             <Menu.Item key="3">
               <Login
-                userInfo={userInfo}
+                userInfo={login}
                 loginComplete={(displayName, token) => {
                   dispatch(loginComplete(displayName, token));
                 }}
@@ -117,7 +117,7 @@ class App extends React.Component<AppProps> {
 
 const mapStateToProps = state => ({
   /// the key must be defined in AppProps in this component
-  userInfo: state.UserInfo
+  login: state.UserInfo
 });
 
 export default connect(mapStateToProps)(App);

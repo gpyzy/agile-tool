@@ -11,7 +11,7 @@ export default handleActions<UserInfo, UserInfo>(
   {
     [LOGIN_COMPLETE]: (userInfo: UserInfo, action: Action<UserInfo>) => {
       let info = action.payload as UserInfo;
-      return { displayName: info.displayName, token: info.token };
+      return Object.assign({}, info);
     },
     [LOGIN_REDIRECT]: (userInfo: UserInfo, action: Action<UserInfo>) => {
       return Object.assign({}, userInfo);
