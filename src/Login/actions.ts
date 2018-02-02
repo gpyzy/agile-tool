@@ -1,30 +1,22 @@
 import { createAction } from 'redux-actions';
 
-import { CLICK_LOGIN, CLICK_LOGOUT } from './constants/ActionTypes';
+import { LOGIN_COMPLETE, LOGIN_REDIRECT } from './constants/ActionTypes';
 import { UserInfo } from './model';
 
-const loginClicked = createAction<UserInfo, string, string>(
-  CLICK_LOGIN,
-  (displayName: string, token: string) => ({
-    displayName: displayName,
-    token: token
-  })
+const loginComplete = createAction<UserInfo, string, string>(
+  LOGIN_COMPLETE,
+  (displayName: string, token: string) => {
+    console.log(LOGIN_COMPLETE);
+    return {
+      displayName: displayName,
+      token: token
+    };
+  }
 );
 
-// const logoutClicked = createAction<UserInfo>(
-//     CLICK_LOGOUT, () => { return { displayName: '', token: '' }; }
-// );
+// const loginRedirect = createAction(LOGIN_REDIRECT);
+const loginRedirect = createAction(LOGIN_REDIRECT, () => {
+  console.log(LOGIN_REDIRECT);
+});
 
-const helloWorld = createAction<UserInfo, string>(
-  CLICK_LOGOUT,
-  (input: string) => ({
-    displayName: 'helloworld ' + input,
-    token: input
-  })
-);
-
-export {
-  loginClicked,
-  // logoutClicked,
-  helloWorld
-};
+export { loginComplete, loginRedirect };

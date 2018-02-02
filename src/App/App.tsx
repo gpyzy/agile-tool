@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Login, UserInfo } from '../Login';
-import { loginClicked } from '../Login';
+import { loginRedirect, loginComplete } from '../Login';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -15,7 +15,7 @@ interface AppProps {
 
 class App extends React.Component<AppProps> {
   render() {
-    const { dispatch } = this.props;
+    const { dispatch, userInfo } = this.props;
 
     return (
       <Layout>
@@ -31,8 +31,12 @@ class App extends React.Component<AppProps> {
             <Menu.Item key="2">nav 2</Menu.Item>
             <Menu.Item key="3">
               <Login
-                loginClicked={(displayName, token) => {
-                  dispatch(loginClicked(displayName, token));
+                userInfo={userInfo}
+                loginComplete={(displayName, token) => {
+                  dispatch(loginComplete(displayName, token));
+                }}
+                loginRedirect={() => {
+                  dispatch(loginRedirect());
                 }}
               />
             </Menu.Item>
@@ -112,6 +116,7 @@ class App extends React.Component<AppProps> {
 }
 
 const mapStateToProps = state => ({
+  /// the key must be defined in AppProps in this component
   userInfo: state.UserInfo
 });
 

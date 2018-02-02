@@ -1,2 +1,2 @@
-export const CLICK_LOGIN = 'CLICK_LOGIN';
-export const CLICK_LOGOUT = 'CLICK_LOGOUT';
+export const LOGIN_COMPLETE = 'LOGIN_COMPLETE';
+export const LOGIN_REDIRECT = 'LOGIN_REDIRECT';

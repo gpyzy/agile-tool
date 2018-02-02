@@ -3,34 +3,27 @@ import { Button } from 'antd';
 import { FormEvent } from 'react';
 import { AdalConfig, Authentication, AuthenticationContext } from 'adal-ts';
 // import { UserInfo } from './index';
+import { UserInfo } from './model';
 
 interface LoginProps {
-  loginClicked: (displayName: string, token: string) => void;
+  loginComplete: (displayName: string, token: string) => void;
+  loginRedirect: () => void;
+  userInfo: UserInfo;
 }
-
-let displayName: string;
-let token: string;
 
 class Login extends React.Component<LoginProps> {
   render() {
+    let buttonValue =
+      this.props.userInfo == null ? 'Login' : this.props.userInfo.displayName;
+
     return (
       <div>
         <Button
           onClick={e => {
             this.onLoginClick(e);
-            this.props.loginClicked(displayName, token);
           }}
         >
-          {(() => {
-            switch (displayName) {
-              case null:
-                return 'Login';
-              case '':
-                return 'Login';
-              default:
-                return displayName;
-            }
-          })()}
+          {buttonValue}
         </Button>
       </div>
     );
@@ -63,9 +56,10 @@ class Login extends React.Component<LoginProps> {
     if (user == null) {
       authContext.login();
       Authentication.getAadRedirectProcessor().process();
+      this.props.loginRedirect();
+    } else {
+      this.props.loginComplete(user.name, authContext.getToken());
     }
-    displayName = user.name;
-    token = authContext.getToken();
   }
 }
 
