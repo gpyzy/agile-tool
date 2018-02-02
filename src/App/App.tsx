@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
-import { Login, UserInfo, helloWorld } from '../Login';
-import User from '../Models/User';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Login, UserInfo } from '../Login';
+import { loginClicked } from '../Login';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -11,7 +11,6 @@ const { Header, Content, Sider } = Layout;
 interface AppProps {
   userInfo: UserInfo;
   dispatch: Dispatch<{}>;
-  userList: User[];
 }
 
 class App extends React.Component<AppProps> {
@@ -32,12 +31,12 @@ class App extends React.Component<AppProps> {
             <Menu.Item key="2">nav 2</Menu.Item>
             <Menu.Item key="3">
               <Login
-                helloWorld={(input: string) => dispatch(helloWorld(input))}
+                loginClicked={(displayName, token) => {
+                  dispatch(loginClicked(displayName, token));
+                }}
               />
             </Menu.Item>
-            <Menu.Item key="4">
-              <Button onClick={()=> dispatch(getUserListClicked())}>Get List</Button>
-            </Menu.Item>
+            <Menu.Item key="4" />
           </Menu>
         </Header>
         <Layout>
@@ -113,8 +112,7 @@ class App extends React.Component<AppProps> {
 }
 
 const mapStateToProps = state => ({
-  userInfo: state.UserInfo,
-  userList: state.userList
+  userInfo: state.UserInfo
 });
 
 export default connect(mapStateToProps)(App);
