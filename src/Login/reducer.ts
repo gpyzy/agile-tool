@@ -7,7 +7,7 @@ const initialState: UserInfo = {
   token: ''
 };
 
-export default handleActions<UserInfo, UserInfo>(
+const login = handleActions<UserInfo, UserInfo>(
   {
     [LOGIN_COMPLETE]: (userInfo: UserInfo, action: Action<UserInfo>) => {
       let info = action.payload as UserInfo;
@@ -19,3 +19,5 @@ export default handleActions<UserInfo, UserInfo>(
   },
   initialState
 );
+
+export { login };

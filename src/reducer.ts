@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import Login from './Login';
+import { login } from './Login';
 
 const rootReducer = combineReducers({
-  Login
+  login
 });
 
 export default rootReducer;

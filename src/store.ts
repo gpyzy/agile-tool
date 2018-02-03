@@ -1,12 +1,19 @@
 import { Store, createStore } from 'redux';
 import rootReducer from './reducer';
-
-const initialState = {
-};
+// import { UserInfo } from './Login/model';
 
 const store: Store<{}> = createStore(
-    rootReducer,
-    initialState
+    rootReducer
 );
+
+// Use the following codes to debug the state object.
+// let ui: UserInfo = { displayName: 'jony', token: '12345' };
+// console.log(store.getState());
+// store.dispatch({
+//     type: 'LOGIN_COMPLETE',
+//     payload: ui
+// });
+
+console.log(store.getState());
 
 export default store;
