@@ -14,6 +14,4 @@ const store: Store<{}> = createStore(
 //     payload: ui
 // });
 
-console.log(store.getState());
-
 export default store;

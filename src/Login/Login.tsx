@@ -14,7 +14,7 @@ interface LoginProps {
 class Login extends React.Component<LoginProps> {
   render() {
     let buttonValue =
-      this.props.userInfo == null ? 'Login' : this.props.userInfo.displayName;
+      this.props.userInfo.displayName === '' ? 'Login' : this.props.userInfo.displayName;
 
     return (
       <div>
