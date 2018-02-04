@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 // import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Login, UserInfo } from '../Login';
-import { loginRedirect, loginComplete } from '../Login';
+import { redirectLogin, completeLogin } from '../Login';
 
 // const { SubMenu } = Menu;
 // const { Header, Content, Sider } = Layout;
@@ -21,10 +21,10 @@ class App extends React.Component<AppProps> {
       <Login
         userInfo={login}
         loginComplete={(displayName, token) => {
-          dispatch(loginComplete(displayName, token));
+          dispatch(completeLogin(displayName, token));
         }}
         loginRedirect={() => {
-          dispatch(loginRedirect());
+          dispatch(redirectLogin());
         }}
       />
     );
