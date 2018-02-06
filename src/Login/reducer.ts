@@ -1,6 +1,6 @@
 import { handleActions, Action } from 'redux-actions';
 import { UserInfo } from './model';
-import { LOGIN_COMPLETE, LOGIN_REDIRECT } from './constants/ActionTypes';
+import { LOGIN_COMPLETE, LOGIN_REDIRECT } from './action-types';
 
 const initialState: UserInfo = {
   displayName: '',
