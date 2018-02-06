@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 
-import { LOGIN_COMPLETE, LOGIN_REDIRECT } from './constants/ActionTypes';
+import { LOGIN_COMPLETE, LOGIN_REDIRECT } from './action-types';
 import { UserInfo } from './model';
 
 const completeLogin = createAction<UserInfo, string, string>(
