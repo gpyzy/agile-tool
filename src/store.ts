@@ -1,10 +1,8 @@
-import { Store, createStore } from 'redux';
+import { Store, createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducer';
-// import { UserInfo } from './Login/model';
+import thunk from 'redux-thunk';
 
-const store: Store<{}> = createStore(
-    rootReducer
-);
+const store: Store<{}> = createStore(rootReducer, applyMiddleware(thunk));
 
 // Use the following codes to debug the state object.
 // let ui: UserInfo = { displayName: 'jony', token: '12345' };
