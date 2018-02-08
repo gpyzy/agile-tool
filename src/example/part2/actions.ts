@@ -10,7 +10,12 @@
 
 // const clickLoadButtonAsync = () => {
 //   return function(dispatch: Dispatch<{}>) {
-    
+//     dispatch(clickLoadButton());
+
+//     return fetch('http://localhost:3000/data/user.json').then(response => {
+//         dispatch
+//         return response.json();
+//     });
 //   };
 // };
 
