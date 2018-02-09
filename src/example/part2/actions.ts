@@ -8,26 +8,31 @@ import { User } from '../../Models';
 import fetch from 'node-fetch';
 import { Dispatch } from 'redux';
 
-const clickLoadButtonAsync = () => {
+const clickLoadButtonAsync = (users: User[]) => {
     return function (dispatch: Dispatch<{}>) {
-        dispatch(clickLoadButton());
+        dispatch(clickLoadButton(users));
 
         return fetch('http://localhost:3000/data/user.json').then(
-            response => {
-                let result: User[] = [{ fullName: 'Aax', title: 'Sir', age: 20 }];
-                dispatch(loadDataSuccessLoadButton(result));
-                return response.json();
+            response => response.json(),
+            error => {
+                dispatch(loadDataFailed());
+            }
+        ).then(
+            (json: User[]) => {
+                dispatch(loadDataSuccess(json));
             },
             error => {
-                dispatch(loadDataFailLoadButton());
-            }
-        );
+                dispatch(loadDataFailed());
+            });
     };
 };
 
-const clickLoadButton = createAction(LOADBUTTON_CLICK);
+const clickLoadButton = createAction<User[], User[]>(LOADBUTTON_CLICK, (users) => {
+    console.log('LOADBUTTON_CLICK');
+    return users;
+});
 
-const loadDataSuccessLoadButton = createAction<User[], User[]>(
+const loadDataSuccess = createAction<User[], User[]>(
     LOADBUTTON_LOADDATA_SUCCESS,
     (result: User[]) => {
         console.log('LOADBUTTON_LOADDATA_SUCCESS triggered');
@@ -35,13 +40,10 @@ const loadDataSuccessLoadButton = createAction<User[], User[]>(
     }
 );
 
-const loadDataFailLoadButton = createAction(LOADBUTTON_LOADDATA_FAIL, () => {
-    console.log('LOADBUTTON_LOADDATA_FAIL triggered');
+const loadDataFailed = createAction(LOADBUTTON_LOADDATA_FAIL, () => {
+    console.log('LOADBUTTON_LOADDATA_FAIL');
 });
 
 export {
-    clickLoadButtonAsync,
-    clickLoadButton,
-    loadDataSuccessLoadButton,
-    loadDataFailLoadButton
+    clickLoadButtonAsync
 };

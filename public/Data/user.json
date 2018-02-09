@@ -1,21 +1,18 @@
-{
-    "users": [{
+ [{
+         "fullName": "Jony Yang",
+         "age": 35,
+         "title": "Manager Software Engineering"
+     },
+     {
 
-            "fullName": "Jony Yang",
-            "age": 35,
-            "title": "Manager Software Engineering"
-        },
-        {
+         "fullName": "Qing Ye",
+         "age": 33,
+         "title": "Product Engineering"
+     },
+     {
 
-            "fullName": "Jony Yang",
-            "age": 35,
-            "title": "Manager Software Engineering"
-        },
-        {
-
-            "fullName": "Jony Yang",
-            "age": 35,
-            "title": "Manager Software Engineering"
-        }
-    ]
-}
+         "fullName": "Abby Yang",
+         "age": 35,
+         "title": "Little girl"
+     }
+ ]
