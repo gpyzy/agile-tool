@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 // import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Login, UserInfo } from '../Login';
-import { loginRedirect, loginComplete } from '../Login';
+import { redirectLogin, completeLogin } from '../Login';
+import { User } from '../Models';
+import { LoadButton, clickLoadButtonAsync } from '../example/part2';
 
 // const { SubMenu } = Menu;
 // const { Header, Content, Sider } = Layout;
@@ -11,6 +13,7 @@ import { loginRedirect, loginComplete } from '../Login';
 interface AppProps {
   login: UserInfo;
   dispatch: Dispatch<{}>;
+  part2: User[];
 }
 
 class App extends React.Component<AppProps> {
@@ -18,22 +21,34 @@ class App extends React.Component<AppProps> {
     const { dispatch, login } = this.props;
 
     return (
-      <Login
-        userInfo={login}
-        loginComplete={(displayName, token) => {
-          dispatch(loginComplete(displayName, token));
-        }}
-        loginRedirect={() => {
-          dispatch(loginRedirect());
-        }}
-      />
+      <div>
+        <div>
+          <Login
+            userInfo={login}
+            loginComplete={(displayName, token) => {
+              dispatch(completeLogin(displayName, token));
+            }}
+            loginRedirect={() => {
+              dispatch(redirectLogin());
+            }}
+          />
+        </div>
+        <div>
+          <LoadButton
+            loadButtonClick={() => {
+              dispatch(clickLoadButtonAsync());
+            }}
+          />
+        </div>
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
   /// the key must be defined in AppProps in this component
-  login: state.login
+  login: state.login,
+  part2: state.part2
 });
 
 export default connect(mapStateToProps)(App);

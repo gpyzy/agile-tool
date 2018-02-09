@@ -1,9 +1,17 @@
 import * as React from 'react';
 import { Button } from 'antd';
 
-class LoadButton extends React.Component {
+interface LoadButtonProps {
+  loadButtonClick: () => void;
+}
+
+class LoadButton extends React.Component<LoadButtonProps> {
   render() {
-    return <Button>Click me for an ajax call</Button>;
+    return (
+      <Button onClick={this.props.loadButtonClick}>
+        Click me for an ajax call
+      </Button>
+    );
   }
 }
 
