@@ -3,11 +3,11 @@ import { LOADBUTTON_CLICK } from './action-types';
 import User from '../../Models/User';
 
 const initialState: User[] = [];
-  
+
 const part2 = handleActions<User[], User[]>(
   {
-    [LOADBUTTON_CLICK]: (state: User[],  action: Action<User[]>) => {
-      let users = action.payload;
+    [LOADBUTTON_CLICK]: (state: User[], action: Action<User[]>) => {
+      let users = action.payload as User[];
       return Object.assign({}, users);
     }
   },
