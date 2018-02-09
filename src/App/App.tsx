@@ -18,7 +18,7 @@ interface AppProps {
 
 class App extends React.Component<AppProps> {
   render() {
-    const { dispatch, login } = this.props;
+    const { dispatch, login, part2 } = this.props;
 
     return (
       <div>
@@ -35,8 +35,9 @@ class App extends React.Component<AppProps> {
         </div>
         <div>
           <LoadButton
-            loadButtonClick={() => {
-              dispatch(clickLoadButtonAsync());
+            users={part2}
+            loadButtonClick={(users: User[]) => {
+              dispatch(clickLoadButtonAsync(users));
             }}
           />
         </div>
