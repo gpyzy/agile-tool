@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button } from 'antd';
-import { FormEvent } from 'react';
 import { AdalConfig, Authentication, AuthenticationContext } from 'adal-ts';
 // import { UserInfo } from './index';
 import { UserInfo } from './model';
@@ -43,7 +42,7 @@ class Login extends React.Component<LoginProps> {
     return Authentication.getContext(config);
   }
 
-  onLoginClick = (event: FormEvent<{}>) => {
+  onLoginClick = (event: React.FormEvent<{}>) => {
     this.props.loginComplete('user.name', 'authContext.getToken()');
     // let authContext = this.authenticate();
     // let user = authContext.getUser();

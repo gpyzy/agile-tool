@@ -12,6 +12,7 @@ const clickLoadButtonAsync = (users: User[]) => {
     return function (dispatch: Dispatch<{}>) {
         dispatch(clickLoadButton(users));
 
+        // Change url to http://localhost:3000/data/doesnotexist.json to test fail cases
         return fetch('http://localhost:3000/data/user.json').then(
             response => response.json(),
             error => {
@@ -35,7 +36,7 @@ const clickLoadButton = createAction<User[], User[]>(LOADBUTTON_CLICK, (users) =
 const loadDataSuccess = createAction<User[], User[]>(
     LOADBUTTON_LOADDATA_SUCCESS,
     (result: User[]) => {
-        console.log('LOADBUTTON_LOADDATA_SUCCESS triggered');
+        console.log('LOADBUTTON_LOADDATA_SUCCESS');
         return result;
     }
 );
