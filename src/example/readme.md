@@ -1,1 +1,1 @@
-Part2 - ajax + thunk
+Part2 - ajax + thunk, return list of users and add the list data to the local state arrays incrementally. 
