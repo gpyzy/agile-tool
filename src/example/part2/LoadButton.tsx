@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Button } from 'antd';
 import { User } from '../../Models';
+import { Part2State } from '../part2';
 
 interface LoadButtonProps {
-  loadButtonClick: (users: User[]) => void;
-  users: User[];
+  loadButtonClick: (part2: Part2State) => void;
+  part2: Part2State;
 }
 
 interface UserListProps {
@@ -16,14 +17,14 @@ class LoadButton extends React.Component<LoadButtonProps> {
     return (
       <div>
         <Button onClick={this.onClick}>Click me for an ajax call</Button>
-        {<this.UserItemElementList users={this.props.users} />}
+        {<this.UserItemElementList users={this.props.part2.userList} />}
       </div>
     );
   }
 
   onClick = (event: React.FormEvent<{}>) => {
-    this.props.loadButtonClick(this.props.users);
-  // tslint:disable-next-line:semicolon
+    this.props.loadButtonClick(this.props.part2);
+    // tslint:disable-next-line:semicolon
   };
 
   UserItemElement = ({ fullName, title, age }: User): JSX.Element => {
@@ -32,7 +33,7 @@ class LoadButton extends React.Component<LoadButtonProps> {
         {fullName}, {age}, {title}
       </div>
     );
-  // tslint:disable-next-line:semicolon
+    // tslint:disable-next-line:semicolon
   };
 
   UserItemElementList = ({ users }: UserListProps) => {
@@ -47,7 +48,7 @@ class LoadButton extends React.Component<LoadButtonProps> {
         ))}
       </div>
     );
-  // tslint:disable-next-line:semicolon
+    // tslint:disable-next-line:semicolon
   };
 }
 
