@@ -2,16 +2,29 @@ import { handleActions, Action } from 'redux-actions';
 import { LOADBUTTON_LOADDATA_SUCCESS } from './action-types';
 import User from '../../Models/User';
 
-const initialState: User[] = [];
+interface Part2State {
+  userList: User[];
+  requestUrl: string;
+}
 
-const part2 = handleActions<User[], User[]>(
+const initialState: Part2State = {
+  userList: [],
+  requestUrl: 'http://localhost:3000/data/user.json'
+};
+
+const part2 = handleActions<Part2State, User[]>(
   {
-    [LOADBUTTON_LOADDATA_SUCCESS]: (state: User[], action: Action<User[]>) => {
+    [LOADBUTTON_LOADDATA_SUCCESS]: (
+      state: Part2State,
+      action: Action<User[]>
+    ) => {
       let newUsers = action.payload as User[];
-      return state.slice().concat(newUsers);
+      let newState = Object.assign({}, state);
+      newState.userList = newState.userList.concat(newUsers);
+      return newState;
     }
   },
   initialState
 );
 
-export { part2 };
+export { part2, Part2State };
