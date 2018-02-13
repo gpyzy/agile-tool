@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 // import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Login, UserInfo } from '../Login';
 import { redirectLogin, completeLogin } from '../Login';
-import { LoadButton, clickLoadButtonAsync, Part2State } from '../example/part2';
+import { LoadButton, clickLoadButtonAsync, clickLoadButtonAsync2, Part2State } from '../example/part2';
 
 // const { SubMenu } = Menu;
 // const { Header, Content, Sider } = Layout;
@@ -37,6 +37,12 @@ class App extends React.Component<AppProps> {
             part2={part2}
             loadButtonClick={(part2State: Part2State) => {
               dispatch(clickLoadButtonAsync(part2State));
+            }}
+          />
+          <LoadButton
+            part2={part2}
+            loadButtonClick={(part2State: Part2State) => {
+              dispatch(clickLoadButtonAsync2(part2State));
             }}
           />
         </div>
