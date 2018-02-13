@@ -9,6 +9,7 @@ interface Part2State {
 
 const initialState: Part2State = {
   userList: [],
+  // Change url to http://localhost:3000/data/doesnotexist.json to test fail cases
   requestUrl: 'http://localhost:3000/data/user.json'
 };
 
