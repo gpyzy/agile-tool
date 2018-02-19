@@ -12,4 +12,16 @@ const store: Store<{}> = createStore(rootReducer, applyMiddleware(thunk));
 //     payload: ui
 // });
 
+export const configureStore = () => {  
+    if (process.env.NODE_ENV !== 'production') {
+      if (module.hot) {
+        module.hot.accept('./reducers', () => {
+          store.replaceReducer(rootReducer);
+        });
+      }
+    }
+  
+    return store;
+  };
+  
 export default store;
