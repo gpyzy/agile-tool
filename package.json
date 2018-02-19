@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "adal-ts": "^0.6.0",
-        "antd": "^3.0.1",
+        "antd": "3.2.1",
         "node-fetch": "^1.7.3",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
