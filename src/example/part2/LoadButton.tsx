@@ -12,7 +12,10 @@ interface UserListProps {
   users: User[];
 }
 
+let eleKey = 0;
+
 class LoadButton extends React.Component<LoadButtonProps> {
+
   render() {
     return (
       <div>
@@ -44,6 +47,7 @@ class LoadButton extends React.Component<LoadButtonProps> {
             title={user.title}
             fullName={user.fullName}
             age={user.age}
+            key={eleKey++}
           />
         ))}
       </div>
