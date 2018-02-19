@@ -1,3 +1,7 @@
+// take reference from https://github.com/facebook/create-react-app/issues/2317
+// need to run 'yarn add -D @types/webpack-env' to install the webpack-env for typescript 
+// or else compile not get success.
+
 import { Store, createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducer';
 import thunk from 'redux-thunk';
