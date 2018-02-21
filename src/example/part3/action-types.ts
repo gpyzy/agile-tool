@@ -1,0 +1,2 @@
+export const GET_USER_CLICK = 'PART3/GET_USER_CLICK';
+export const FETCCH_GET_DATA = 'PART3/FETCCH_GET_DATA';
