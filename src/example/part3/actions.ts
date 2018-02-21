@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { Dispatch } from 'redux';
 import fetch from 'node-fetch';
-import { GET_USER_CLICK } from './action-types';
+import { GET_USER_CLICK, FETCHED_GET_DATA } from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
 
@@ -18,21 +18,26 @@ import { User } from '../../Models';
 
 const clickGetUserAsync = (part3State: Part3State) => {
     return async function (dispatch: Dispatch<{}>) {
-        dispatch(clickGetUser(part3State));
+        dispatch(clickGetUser(part3State.ClickCount));
 
         const result = await fetch(part3State.Url);
-        const json: User[] = await result.json();
-        console.log(json);
+        const users: User[] = await result.json();
+        console.log(users);
+
+        // error handling is omitted
+        dispatch(fetchDataSuccess(users));
     };
 };
 
-const clickGetUser = createAction<Part3State, Part3State>(
+const clickGetUser = createAction<number, number>(
     GET_USER_CLICK,
-    (state) => {
-        const result = { ...state, ClickCount: state.ClickCount + 1 };
+    (counter) => {
+        const result = counter + 1;
         console.log(result);
         return result;
     }
 );
+
+const fetchDataSuccess = createAction<User[]>(FETCHED_GET_DATA);
 
 export { clickGetUser, clickGetUserAsync };

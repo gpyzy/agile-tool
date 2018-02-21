@@ -1,5 +1,5 @@
 import { MiddlewareAPI } from 'redux';
-//import * as _ from 'lodash';
+// import * as _ from 'lodash';
 
 const oauth2TokenMiddleware = fetchImplementation => (store: MiddlewareAPI<{}>) => {
   return next => {
