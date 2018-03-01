@@ -17,27 +17,22 @@ import { User } from '../../Models';
 // });
 
 const clickGetUserAsync = (part3State: Part3State) => {
-    return async function (dispatch: Dispatch<{}>) {
-        dispatch(clickGetUser(part3State.ClickCount));
+  return async function(dispatch: Dispatch<{}>) {
+    dispatch(clickGetUser(part3State.clickCount));
 
-        const result = await fetch(part3State.Url);
-        const users: User[] = await result.json();
-        console.log(users);
+    const result = await fetch(part3State.url);
+    const users: User[] = await result.json();
+    console.log(users);
 
-        // error handling is omitted
-        dispatch(fetchDataSuccess(users));
-    };
+    // error handling is omitted
+    dispatch(fetchDataSuccess(users));
+  };
 };
 
-const clickGetUser = createAction<number, number>(
-    GET_USER_CLICK,
-    (counter) => {
-        const result = counter + 1;
-        console.log(result);
-        return result;
-    }
-);
+const clickGetUser = createAction<number, number>(GET_USER_CLICK, counter => {
+  return counter;
+});
 
 const fetchDataSuccess = createAction<User[]>(FETCHED_GET_DATA);
 
-export { clickGetUser, clickGetUserAsync };
+export { clickGetUser, clickGetUserAsync, fetchDataSuccess };

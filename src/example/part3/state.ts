@@ -1,8 +1,8 @@
 import { User } from '../../Models';
 
 export default interface Part3State {
-    Url: string;
-    Data: User[];
-    ClickCount: number;
+    url: string;
+    data: User[];
+    clickCount: number;
     token: string;
 }
