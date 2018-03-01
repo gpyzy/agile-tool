@@ -48,7 +48,7 @@ export const clickRefreshTokenAsync = (part3State: Part3State) =>
   async function(dispatch: Dispatch<{}>) {
     dispatch(clickRefreshToken);
     try {
-      const result = await fetch('http://localhost:3000/token.json');
+      const result = await fetch('http://localhost:3000/data/token.json');
       const token = await result.json();
       const value = lodash_get(token, 'payload.sub');
       dispatch(refreshedToken(value));
