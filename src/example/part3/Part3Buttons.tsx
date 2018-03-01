@@ -11,6 +11,7 @@ interface Part3ButtonsProps {
 interface ResultAreaProps {
   users: User[];
   clickCount: number;
+  token: string;
 }
 
 let counter = 0;
@@ -36,13 +37,14 @@ class Part3Buttons extends React.Component<Part3ButtonsProps> {
         <ResultArea
           users={this.props.part3.data}
           clickCount={this.props.part3.clickCount}
+          token={this.props.part3.token}
         />
       </div>
     );
   }
 }
 
-function ResultArea({ users, clickCount }: ResultAreaProps) {
+function ResultArea({ users, clickCount, token }: ResultAreaProps) {
   return (
     <div>
       <h2>User list</h2>
@@ -52,6 +54,9 @@ function ResultArea({ users, clickCount }: ResultAreaProps) {
         </div>
       ))}
       <h2>Get users button click count: {clickCount}</h2>
+      <h2>token value</h2>
+      <div>In state: {token}</div>
+      <div>In storages: {token}</div>
     </div>
   );
   // tslint:disable-next-line:semicolon

@@ -1,7 +1,12 @@
 import { createAction } from 'redux-actions';
 import { Dispatch } from 'redux';
 import fetch from 'node-fetch';
-import { GET_USER_CLICK, GOT_USERS, REFRESHED_TOKEN } from './action-types';
+import {
+  GET_USER_CLICK,
+  GOT_USERS,
+  REFRESHED_TOKEN,
+  REFRESH_TOKEN_CLICK
+} from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
 import { get as lodash_get } from 'lodash';
@@ -24,8 +29,8 @@ const clickGetUser = createAction<number, number>(GET_USER_CLICK, counter => {
 
 const gotUsers = createAction<User[]>(GOT_USERS);
 
-const clickRefreshToken = createAction(REFRESHED_TOKEN, () => {
-  console.log([REFRESHED_TOKEN]);
+const clickRefreshToken = createAction(REFRESH_TOKEN_CLICK, () => {
+  console.log([REFRESH_TOKEN_CLICK]);
 });
 
 const refreshedToken = createAction<string>(REFRESHED_TOKEN);
