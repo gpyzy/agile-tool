@@ -7,7 +7,6 @@ import {
 } from './action-types';
 import User from '../../Models/User';
 import Part3State from './state';
-import { REFRESHED_TOKEN } from './action-types';
 
 const initialState: Part3State = {
   data: [],
