@@ -19,7 +19,7 @@ const initialState: Part3State = {
 const gotUsers = handleAction<Part3State, User[]>(
   GOT_USERS,
   (state: Part3State, action: Action<User[]>) => {
-    return { ...state, Data: action.payload as User[] };
+    return { ...state, data: state.data.concat(action.payload as User[]) };
   },
   initialState
 );

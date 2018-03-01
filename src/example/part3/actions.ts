@@ -18,7 +18,6 @@ import { get as lodash_get } from 'lodash';
 // });
 
 const clickGetUser = createAction<number, number>(GET_USER_CLICK, counter => {
-  console.log([GET_USER_CLICK]);
   console.log(GET_USER_CLICK);
   return counter;
 });
@@ -33,7 +32,7 @@ const refreshedToken = createAction<string>(REFRESHED_TOKEN);
 
 export const clickGetUserAsync = (part3State: Part3State) => {
   return async function(dispatch: Dispatch<{}>) {
-    dispatch(clickGetUser(part3State.clickCount));
+    dispatch(clickGetUser(1));
 
     const result = await fetch(part3State.url);
     const users: User[] = await result.json();

@@ -13,6 +13,8 @@ interface ResultAreaProps {
   clickCount: number;
 }
 
+let counter = 0;
+
 class Part3Buttons extends React.Component<Part3ButtonsProps> {
   render() {
     return (
@@ -45,13 +47,14 @@ function ResultArea({ users, clickCount }: ResultAreaProps) {
     <div>
       <h2>User list</h2>
       {users.map(user => (
-        <div>
+        <div key={counter++}>
           {user.fullName}, {user.title}, {user.age}
         </div>
       ))}
       <h2>Get users button click count: {clickCount}</h2>
     </div>
   );
+  // tslint:disable-next-line:semicolon
 }
 
 export default Part3Buttons;
