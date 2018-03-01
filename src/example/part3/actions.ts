@@ -36,7 +36,7 @@ const clickRefreshToken = createAction(REFRESH_TOKEN_CLICK, () => {
 const refreshedToken = createAction<string>(REFRESHED_TOKEN);
 
 export const clickGetUserAsync = (part3State: Part3State) => {
-  return async function(dispatch: Dispatch<{}>) {
+  return async function (dispatch: Dispatch<{}>) {
     dispatch(clickGetUser(1));
 
     const result = await fetch(part3State.url);
@@ -48,14 +48,25 @@ export const clickGetUserAsync = (part3State: Part3State) => {
   };
 };
 
+interface Fetch {
+  url: string;
+  params: any;
+}
+export const fetchTokenAsync = createAction<Fetch, string, any>('PART3/FETCH_TOKEN_ASYNC', (url, params) => {
+  return { url: url, params: params };
+});
+
 export const clickRefreshTokenAsync = (part3State: Part3State) =>
-  async function(dispatch: Dispatch<{}>) {
+  async function (dispatch: Dispatch<{}>) {
     dispatch(clickRefreshToken);
     try {
-      const result = await fetch('http://localhost:3000/data/token.json');
-      const token = await result.json();
-      const value = lodash_get(token, 'payload.sub');
-      dispatch(refreshedToken(value));
+      //const result = await fetch('http://localhost:3000/data/token.json');
+      //const token = await result.json();
+      //const value = lodash_get(token, 'payload.sub');
+      //dispatch(refreshedToken(value));
+
+      await dispatch(fetchTokenAsync('http://localhost:3000/data/token.json', null));
+      /// TODO - what's next?
     } catch (ex) {
       console.log(ex);
     }
