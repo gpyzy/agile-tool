@@ -4,7 +4,18 @@ import { Dispatch } from 'redux';
 // import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { Login, UserInfo } from '../Login';
 import { redirectLogin, completeLogin } from '../Login';
-import { LoadButton, clickLoadButtonAsync, clickLoadButtonAsync2, Part2State } from '../example/part2';
+import Part3State from '../example/part3/state';
+import {
+  LoadButton,
+  clickLoadButtonAsync,
+  clickLoadButtonAsync2,
+  Part2State
+} from '../example/part2';
+import {
+  Part3Buttons,
+  clickGetUserAsync,
+  clickRefreshTokenAsync
+} from '../example/part3';
 
 // const { SubMenu } = Menu;
 // const { Header, Content, Sider } = Layout;
@@ -13,11 +24,12 @@ interface AppProps {
   login: UserInfo;
   dispatch: Dispatch<{}>;
   part2: Part2State;
+  part3: Part3State;
 }
 
 class App extends React.Component<AppProps> {
   render() {
-    const { dispatch, login, part2 } = this.props;
+    const { dispatch, login, part2, part3 } = this.props;
 
     return (
       <div>
@@ -33,6 +45,7 @@ class App extends React.Component<AppProps> {
           />
         </div>
         <div>
+          <h1>Example part 2</h1>
           <LoadButton
             part2={part2}
             loadButtonClick={(part2State: Part2State) => {
@@ -46,6 +59,18 @@ class App extends React.Component<AppProps> {
             }}
           />
         </div>
+        <div>
+          <h1>Example part3</h1>
+          <Part3Buttons
+            getUsersButtonClick={(part3State: Part3State) => {
+              dispatch(clickGetUserAsync(part3));
+            }}
+            updateTokenButtonClick={(part3State: Part3State) => {
+              dispatch(clickRefreshTokenAsync(part3));
+            }}
+            part3={part3}
+          />
+        </div>
       </div>
     );
   }
@@ -54,7 +79,8 @@ class App extends React.Component<AppProps> {
 const mapStateToProps = state => ({
   /// the key must be defined in AppProps in this component
   login: state.login,
-  part2: state.part2
+  part2: state.part2,
+  part3: state.part3
 });
 
 export default connect(mapStateToProps)(App);
