@@ -1,9 +1,10 @@
 import { createAction } from 'redux-actions';
 import { Dispatch } from 'redux';
 import fetch from 'node-fetch';
-import { GET_USER_CLICK, FETCHED_GET_DATA } from './action-types';
+import { GET_USER_CLICK, GOT_USERS, REFRESHED_TOKEN } from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
+import { get as lodash_get } from 'lodash';
 
 // const temp = createActions<Part3State>({
 //     [GET_USER_CLICK]: (state: Part3State) => {
@@ -16,7 +17,21 @@ import { User } from '../../Models';
 //     [FETCCH_GET_DATA]: (state: Part3State) => { return state; }
 // });
 
-const clickGetUserAsync = (part3State: Part3State) => {
+const clickGetUser = createAction<number, number>(GET_USER_CLICK, counter => {
+  console.log([GET_USER_CLICK]);
+  console.log(GET_USER_CLICK);
+  return counter;
+});
+
+const gotUsers = createAction<User[]>(GOT_USERS);
+
+const clickRefreshToken = createAction(REFRESHED_TOKEN, () => {
+  console.log([REFRESHED_TOKEN]);
+});
+
+const refreshedToken = createAction<string>(REFRESHED_TOKEN);
+
+export const clickGetUserAsync = (part3State: Part3State) => {
   return async function(dispatch: Dispatch<{}>) {
     dispatch(clickGetUser(part3State.clickCount));
 
@@ -25,14 +40,19 @@ const clickGetUserAsync = (part3State: Part3State) => {
     console.log(users);
 
     // error handling is omitted
-    dispatch(fetchDataSuccess(users));
+    dispatch(gotUsers(users));
   };
 };
 
-const clickGetUser = createAction<number, number>(GET_USER_CLICK, counter => {
-  return counter;
-});
-
-const fetchDataSuccess = createAction<User[]>(FETCHED_GET_DATA);
-
-export { clickGetUser, clickGetUserAsync, fetchDataSuccess };
+export const clickRefreshTokenAsync = (part3State: Part3State) =>
+  async function(dispatch: Dispatch<{}>) {
+    dispatch(clickRefreshToken);
+    try {
+      const result = await fetch('http://localhost:3000/token.json');
+      const token = await result.json();
+      const value = lodash_get(token, 'payload.sub');
+      dispatch(refreshedToken(value));
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
