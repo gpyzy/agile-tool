@@ -5,8 +5,8 @@
 import { Store, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer';
-import oauth2TokenMiddleware from './middlewares/oauth2-token-middleware';
-import { fetchWithToken } from './example/part3';
+// import oauth2TokenMiddleware from './middlewares/oauth2-token-middleware';
+// import { fetchWithToken } from './example/part3';
 
 const store: Store<{}> = createStore(
   rootReducer,
