@@ -34,7 +34,7 @@ const clickRefreshToken = createAction(REFRESH_TOKEN_CLICK, () => {
   console.log(REFRESH_TOKEN_CLICK);
 });
 
-const refreshedToken = createAction<string>(REFRESHED_TOKEN);
+// const refreshedToken = createAction<string>(REFRESHED_TOKEN);
 
 export const clickGetUserAsync = (part3State: Part3State) => {
   return async function(dispatch: Dispatch<{}>) {
