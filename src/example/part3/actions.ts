@@ -2,11 +2,10 @@ import { createAction } from 'redux-actions';
 import { Dispatch } from 'redux';
 import fetch from 'node-fetch';
 import {
-  GET_USER_CLICK,
+  GET_USERS,
   GOT_USERS,
-  REFRESHED_TOKEN,
-  REFRESH_TOKEN_CLICK,
-  FETCH_TOKEN_ASYNC
+  GET_TOKEN,
+  GOT_TOKEN,
 } from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
@@ -23,15 +22,15 @@ import { get as lodash_get } from 'lodash';
 //     [FETCCH_GET_DATA]: (state: Part3State) => { return state; }
 // });
 
-const clickGetUser = createAction<number, number>(GET_USER_CLICK, counter => {
-  console.log(GET_USER_CLICK);
+const clickGetUser = createAction<number, number>(GET_USERS, counter => {
+  console.log(GET_USERS);
   return counter;
 });
 
 const gotUsers = createAction<User[]>(GOT_USERS);
 
-const clickRefreshToken = createAction(REFRESH_TOKEN_CLICK, () => {
-  console.log(REFRESH_TOKEN_CLICK);
+const clickRefreshToken = createAction(GET_TOKEN, () => {
+  console.log(GET_TOKEN);
 });
 
 // const refreshedToken = createAction<string>(REFRESHED_TOKEN);
@@ -54,7 +53,7 @@ interface Fetch {
   params: {};
 }
 export const fetchWithToken = createAction<Fetch, string, {}>(
-  FETCH_TOKEN_ASYNC,
+  GOT_TOKEN,
   (url, params) => {
     return { url: url, params: params };
   }
