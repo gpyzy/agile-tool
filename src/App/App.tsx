@@ -13,7 +13,7 @@ import {
 } from '../example/part2';
 import {
   Part3Buttons,
-  clickGetUserAsync,
+  clickGetUsersAsync,
   clickRefreshTokenAsync
 } from '../example/part3';
 
@@ -63,7 +63,7 @@ class App extends React.Component<AppProps> {
           <h1>Example part3</h1>
           <Part3Buttons
             getUsersButtonClick={(part3State: Part3State) => {
-              dispatch(clickGetUserAsync(part3));
+              dispatch(clickGetUsersAsync());
             }}
             updateTokenButtonClick={(part3State: Part3State) => {
               dispatch(clickRefreshTokenAsync(part3));

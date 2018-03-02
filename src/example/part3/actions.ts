@@ -1,41 +1,59 @@
 import { createAction } from 'redux-actions';
-import { Action, ActionCreator, Dispatch } from 'redux';
+import { Dispatch, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import fetch from 'node-fetch';
 import { GET_USERS, GOT_USERS, GET_TOKEN, GOT_TOKEN } from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
 import { get as lodash_get } from 'lodash';
+import { Action } from '../../actions';
 
-// const clickGetUser = createAction<number, number>(GET_USERS, counter => {
+// const getUsers = createAction<number, number>(GET_USERS, counter => {
 //   console.log(GET_USERS);
 //   return counter;
 // });
-const clickGetUser: ActionCreator<Action> = counter => {
-  return {
-    type: GET_USERS,
-    payload: counter
-  };
-};
+const getUsers: ActionCreator<Action> = (counter: number) => ({
+  type: GET_USERS,
+  payload: counter
+});
 
-const gotUsers = createAction<User[]>(GOT_USERS);
+// const gotUsers = createAction<User[]>(GOT_USERS);
+const gotUsers: ActionCreator<Action> = (users: User[]) => ({
+  type: GOT_USERS,
+  payload: users
+});
 
-const clickRefreshToken = createAction(GET_TOKEN, () => {
-  console.log(GET_TOKEN);
+// const clickRefreshToken = createAction(GET_TOKEN, () => {
+//   console.log(GET_TOKEN);
+// });
+const clickRefreshToken: ActionCreator<Action> = () => ({
+  type: GET_TOKEN
 });
 
 // const refreshedToken = createAction<string>(REFRESHED_TOKEN);
 
-export const clickGetUserAsync = (part3State: Part3State) => {
-  return async function(dispatch: Dispatch<{}>) {
-    dispatch(clickGetUser(1));
+// export const clickGetUserAsync = (part3State: Part3State) => {
+//   return async function(dispatch: Dispatch<{}>) {
+//     dispatch(getUsers(1));
 
-    const result = await fetch(part3State.url);
+//     const result = await fetch(part3State.url);
+//     const users: User[] = await result.json();
+//     console.log(users);
+
+//     // error handling is omitted
+//     dispatch(gotUsers(users));
+//   };
+// };
+export const clickGetUsersAsync: ActionCreator<
+  ThunkAction<Promise<Action>, Part3State, void>
+> = () => {
+  return async (dispatch, getState): Promise<Action> => {
+    dispatch(getUsers(1));
+    const result = await fetch(getState().url);
     const users: User[] = await result.json();
     console.log(users);
-
     // error handling is omitted
-    dispatch(gotUsers(users));
+    return dispatch(gotUsers(users));
   };
 };
 
