@@ -1,5 +1,5 @@
 import { MiddlewareAPI, Dispatch } from 'redux';
-import { FETCH_TOKEN_ASYNC } from '../example/part3';
+// import { FETCH_TOKEN_ASYNC } from '../example/part3';
 // import { get as cookie_get } from 'es-cookie';
 import { get as lodash_get, set as lodash_set } from 'lodash';
 
@@ -13,7 +13,7 @@ const oauth2TokenMiddleware = fetchImplementation => {
     return (next: Dispatch<{}>) => {
       return (action: Action) => {
         /// tokenization
-        if (action.type === FETCH_TOKEN_ASYNC) {
+        if (action.type === 'FETCH_TOKEN_ASYNC') {
           /// Set token in http header
           const tokenInState = lodash_get(store.getState(), 'part3.token');
           if (tokenInState !== undefined) {

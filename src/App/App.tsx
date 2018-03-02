@@ -63,7 +63,7 @@ class App extends React.Component<AppProps> {
           <h1>Example part3</h1>
           <Part3Buttons
             getUsersButtonClick={(part3State: Part3State) => {
-              dispatch(clickGetUsersAsync());
+              dispatch(clickGetUsersAsync(part3));
             }}
             updateTokenButtonClick={(part3State: Part3State) => {
               dispatch(clickRefreshTokenAsync(part3));

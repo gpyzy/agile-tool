@@ -45,11 +45,12 @@ const clickRefreshToken: ActionCreator<Action> = () => ({
 //   };
 // };
 export const clickGetUsersAsync: ActionCreator<
-  ThunkAction<Promise<Action>, Part3State, void>
-> = () => {
-  return async (dispatch, getState): Promise<Action> => {
+  ThunkAction<Promise<Action>, void, void>
+> = (part3: Part3State) => {
+  return async (dispatch /*, getState*/): Promise<Action> => {
     dispatch(getUsers(1));
-    const result = await fetch(getState().url);
+
+    const result = await fetch(part3.url);
     const users: User[] = await result.json();
     console.log(users);
     // error handling is omitted
