@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 import { GET_USERS, GOT_USERS, GET_TOKEN, GOT_TOKEN } from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
-import { get as lodash_get } from 'lodash';
+// import { get as lodash_get } from 'lodash';
 import { Action } from '../../actions';
 
 // const getUsers = createAction<number, number>(GET_USERS, counter => {
