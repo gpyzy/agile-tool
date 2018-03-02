@@ -1,31 +1,22 @@
 import { createAction } from 'redux-actions';
-import { Dispatch } from 'redux';
+import { Action, ActionCreator, Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import fetch from 'node-fetch';
-import {
-  GET_USERS,
-  GOT_USERS,
-  GET_TOKEN,
-  GOT_TOKEN,
-} from './action-types';
+import { GET_USERS, GOT_USERS, GET_TOKEN, GOT_TOKEN } from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
 import { get as lodash_get } from 'lodash';
 
-// const temp = createActions<Part3State>({
-//     [GET_USER_CLICK]: (state: Part3State) => {
-//         console.log(GET_USER_CLICK);
-//         let result = Object.assign({}, state);
-//         result.ClickCount++;
-
-//         return result;
-//     },
-//     [FETCCH_GET_DATA]: (state: Part3State) => { return state; }
+// const clickGetUser = createAction<number, number>(GET_USERS, counter => {
+//   console.log(GET_USERS);
+//   return counter;
 // });
-
-const clickGetUser = createAction<number, number>(GET_USERS, counter => {
-  console.log(GET_USERS);
-  return counter;
-});
+const clickGetUser: ActionCreator<Action> = counter => {
+  return {
+    type: GET_USERS,
+    payload: counter
+  };
+};
 
 const gotUsers = createAction<User[]>(GOT_USERS);
 
@@ -66,7 +57,7 @@ export const clickRefreshTokenAsync = (part3State: Part3State) =>
       await dispatch(
         fetchWithToken('http://localhost:3000/data/token.json', {})
       );
-  
+
       /// TODO - what's next?
     } catch (ex) {
       console.log(ex);
