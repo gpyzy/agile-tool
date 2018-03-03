@@ -4,13 +4,12 @@ import fetch from 'node-fetch';
 import {
   GET_USER_CLICK,
   GOT_USERS,
-  REFRESHED_TOKEN,
   REFRESH_TOKEN_CLICK,
   FETCH_TOKEN_ASYNC
 } from './action-types';
 import Part3State from './state';
 import { User } from '../../Models';
-import { get as lodash_get } from 'lodash';
+// import { get as lodash_get } from 'lodash';
 
 // const temp = createActions<Part3State>({
 //     [GET_USER_CLICK]: (state: Part3State) => {
@@ -37,7 +36,7 @@ const clickRefreshToken = createAction(REFRESH_TOKEN_CLICK, () => {
 // const refreshedToken = createAction<string>(REFRESHED_TOKEN);
 
 export const clickGetUserAsync = (part3State: Part3State) => {
-  return async function(dispatch: Dispatch<{}>) {
+  return async function (dispatch: Dispatch<{}>) {
     dispatch(clickGetUser(1));
 
     const result = await fetch(part3State.url);
@@ -61,13 +60,13 @@ export const fetchWithToken = createAction<Fetch, string, {}>(
 );
 
 export const clickRefreshTokenAsync = (part3State: Part3State) =>
-  async function(dispatch: Dispatch<{}>) {
+  async function (dispatch: Dispatch<{}>) {
     dispatch(clickRefreshToken());
     try {
       await dispatch(
         fetchWithToken('http://localhost:3000/data/token.json', {})
       );
-  
+
       /// TODO - what's next?
     } catch (ex) {
       console.log(ex);
