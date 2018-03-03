@@ -9,6 +9,26 @@ import {
 import { User } from '../../Models';
 import { Part2State } from '../part2';
 
+const clickLoadButton = createAction<User[], User[]>(
+  LOADBUTTON_CLICK,
+  users => {
+    console.log('LOADBUTTON_CLICK');
+    return users;
+  }
+);
+
+const loadDataSuccess = createAction<User[], User[]>(
+  LOADBUTTON_LOADDATA_SUCCESS,
+  (result: User[]) => {
+    console.log('LOADBUTTON_LOADDATA_SUCCESS');
+    return result;
+  }
+);
+
+const loadDataFailed = createAction(LOADBUTTON_LOADDATA_FAIL, () => {
+  console.log('LOADBUTTON_LOADDATA_FAIL');
+});
+
 const clickLoadButtonAsync = (part2: Part2State) => {
   return function (dispatch: Dispatch<{}>) {
     dispatch(clickLoadButton(part2.userList));
@@ -43,25 +63,5 @@ const clickLoadButtonAsync2 = (part2: Part2State) => async (dispatch: Dispatch<{
     dispatch(loadDataFailed());
   }
 };
-
-const clickLoadButton = createAction<User[], User[]>(
-  LOADBUTTON_CLICK,
-  users => {
-    console.log('LOADBUTTON_CLICK');
-    return users;
-  }
-);
-
-const loadDataSuccess = createAction<User[], User[]>(
-  LOADBUTTON_LOADDATA_SUCCESS,
-  (result: User[]) => {
-    console.log('LOADBUTTON_LOADDATA_SUCCESS');
-    return result;
-  }
-);
-
-const loadDataFailed = createAction(LOADBUTTON_LOADDATA_FAIL, () => {
-  console.log('LOADBUTTON_LOADDATA_FAIL');
-});
 
 export { clickLoadButtonAsync, clickLoadButtonAsync2 };
