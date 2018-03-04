@@ -1,28 +1,28 @@
-import { MiddlewareAPI, Dispatch } from 'redux';
+// import { MiddlewareAPI, Dispatch } from 'redux';
 // import { FETCH_TOKEN_ASYNC } from '../example/part3';
 // import { get as cookie_get } from 'es-cookie';
-import { get as lodash_get, set as lodash_set } from 'lodash';
+import { get as lodash_get } from 'lodash';
+import { FETCH_TOKEN } from '../example/part3';
+// import { Action } from '../actions';
 
-interface Action {
-  payload: {};
-  type: string;
-}
 // <S>(api: MiddlewareAPI<S>): (next: Dispatch<S>) => Dispatch<S>;
 const oauth2TokenMiddleware = fetchImplementation => {
-  return (store: MiddlewareAPI<{}>) => {
-    return (next: Dispatch<{}>) => {
-      return (action: Action) => {
+  return (store) => {
+    return (next) => {
+      return (action) => {
         /// tokenization
-        if (action.type === 'FETCH_TOKEN_ASYNC') {
-          /// Set token in http header
+        if (action.type === FETCH_TOKEN) {
+          /// Set token from state to http header
+          const { url, params } = action.payload;
           const tokenInState = lodash_get(store.getState(), 'part3.token');
+          let newParams = Object.assign({}, params);
           if (tokenInState !== undefined) {
-            lodash_set(action.payload, 'token', tokenInState);
+            newParams = Object.assign(newParams, { token: tokenInState });
           }
-        } else {
-          return next(action);
+          return fetchImplementation(url, newParams);
         }
-        throw 'Not Implemented yet';
+
+        return next(action);
       };
     };
   };

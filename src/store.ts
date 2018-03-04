@@ -5,14 +5,15 @@
 import { Store, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducer';
-// import oauth2TokenMiddleware from './middlewares/oauth2-token-middleware';
+import oauth2TokenMiddleware from './middlewares/oauth2-token-middleware';
 // import { fetchWithToken } from './example/part3';
+import fetch from 'node-fetch'; 
 
 const store: Store<{}> = createStore(
   rootReducer,
-  // applyMiddleware(thunk, oauth2TokenMiddleware(fetchWithToken))
+  applyMiddleware(thunk, oauth2TokenMiddleware(fetch))
   /// Seems I have to reseach thunkAction first before I touch middleware.
-  applyMiddleware(thunk)
+  // applyMiddleware(thunk)
 );
 
 // Use the following codes to debug the state object.

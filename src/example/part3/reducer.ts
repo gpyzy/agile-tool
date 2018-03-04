@@ -3,7 +3,7 @@ import {
   GET_USERS,
   GOT_USERS,
   GET_TOKEN,
-  GOT_TOKEN
+  GOT_TOKEN,
 } from './action-types';
 import User from '../../Models/User';
 import Part3State from './state';
