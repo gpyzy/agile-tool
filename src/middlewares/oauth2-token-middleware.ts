@@ -33,5 +33,13 @@ const oauth2TokenMiddleware = (fetchImplementation) => {
   };
 };
 
+export const testMiddleWare = store => next => action => {
+  if (action.type === 'jony') {
+    return next({ type: 'jony2', payload: 'jony@live.cn' });
+  } else {
+    return next(action);
+  }
+};
+
 export default oauth2TokenMiddleware;
 // https://medium.com/@jacobp100/you-arent-using-redux-middleware-enough-94ffe991e6

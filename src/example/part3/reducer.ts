@@ -7,6 +7,7 @@ import {
 } from './action-types';
 import User from '../../Models/User';
 import Part3State from './state';
+// import ActionButton from 'antd/lib/modal/ActionButton';
 
 const initialState: Part3State = {
   data: [],
@@ -48,12 +49,22 @@ const refreshedToken = handleAction<Part3State, string>(
   initialState
 );
 
+const clicTestResult = handleAction<Part3State, string>(
+  'jony2',
+  (state, action) => {
+    console.log(action);
+    return state;
+  },
+  initialState
+);
+
 const part3 = handleActions<Part3State, number | User[] | string>(
   {
     [GOT_USERS]: gotUsers,
     [GET_USERS]: getUserClick,
     [GET_TOKEN]: refereshTokenClick,
-    [GOT_TOKEN]: refreshedToken
+    [GOT_TOKEN]: refreshedToken,
+    'jony2': clicTestResult
   },
   initialState
 );

@@ -14,8 +14,9 @@ import {
 import {
   Part3Buttons,
   clickGetUsersAsync,
-  clickRefreshTokenAsync
+  // clickRefreshTokenAsync
 } from '../example/part3';
+import { clicTest } from 'src/example/part3/actions';
 
 // const { SubMenu } = Menu;
 // const { Header, Content, Sider } = Layout;
@@ -66,7 +67,7 @@ class App extends React.Component<AppProps> {
               dispatch(clickGetUsersAsync(part3));
             }}
             updateTokenButtonClick={(part3State: Part3State) => {
-              dispatch(clickRefreshTokenAsync(part3));
+              dispatch(clicTest(part3)) ;
             }}
             part3={part3}
           />

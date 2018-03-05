@@ -47,22 +47,42 @@ export const fetchWithTokenFailed: ActionCreator<Action<string>> = (
 
 export const clickGetUsersAsync: ActionCreator<
   ThunkAction<Promise<Action<User[] | string>>, Part3State, void>
-> = (part3: Part3State) => {
-  return async (dispatch /*, getState*/): Promise<Action<User[] | string>> => {
-    dispatch(getUsers(1));
+  > = (part3: Part3State) => {
+    return async (dispatch /*, getState*/): Promise<Action<User[] | string>> => {
+      dispatch(getUsers(1));
 
-    try {
-      const temp = await dispatch(fetchWithToken(part3.url, {}));
-      
-      console.log(temp);
-      // const result = await fetch(part3.url);
-      // const users: User[] = await result.json();
-      // console.log(users);
-      // return dispatch(gotUsers(users));
-      return dispatch(gotUsers(1));
-    } catch (ex) {
-      return dispatch(fetchWithTokenFailed(ex as string));
-    }
+      try {
+        const temp = await dispatch(fetchWithToken(part3.url, {}));
+
+        console.log(temp);
+        // const result = await fetch(part3.url);
+        // const users: User[] = await result.json();
+        // console.log(users);
+        // return dispatch(gotUsers(users));
+        return dispatch(gotUsers(1));
+      } catch (ex) {
+        return dispatch(fetchWithTokenFailed(ex as string));
+      }
+    };
+  };
+
+// export const clicTest: ActionCreator<Action<string>> = () => ({
+//   type: 'jony',
+//   payload: 'default payload'
+// });
+
+export const clicTest: ActionCreator<ThunkAction<Promise<Action<string>>, Part3State, void>> = (part3: Part3State) => {
+  console.log();
+  return async (dispatch): Promise<Action<string>> => {
+    console.log(part3);
+    let result = await dispatch({
+      type: 'jony',
+      payload: 'default payload'
+    });
+    // result = result;
+    // console.log(result);
+    return result;
+    // return dispatch({ type: 'jony2', payload: '...' });
   };
 };
 
@@ -89,17 +109,17 @@ export const clickGetUsersAsync: ActionCreator<
 
 export const clickRefreshTokenAsync: ActionCreator<
   ThunkAction<Promise<Action<{}>>, Part3State, void>
-> = () => {
-  return async (dispatch /*getState*/): Promise<Action<{}>> => {
-    dispatch(clickRefreshToken());
-    try {
-      const response = await dispatch(
-        fetchWithToken('http://localhost:3000/data/token.json', {})
-      );
-      return response;
-    } catch (ex) {
-      console.log(ex);
-      return dispatch(fetchWithTokenFailed(ex));
-    }
+  > = () => {
+    return async (dispatch /*getState*/): Promise<Action<{}>> => {
+      dispatch(clickRefreshToken());
+      try {
+        const response = await dispatch(
+          fetchWithToken('http://localhost:3000/data/token.json', {})
+        );
+        return response;
+      } catch (ex) {
+        console.log(ex);
+        return dispatch(fetchWithTokenFailed(ex));
+      }
+    };
   };
-};
