@@ -12,7 +12,7 @@ import { MiddlewareAPI, Dispatch } from 'redux';
 const oauth2TokenMiddleware = (fetchImplementation) => {
   return (store: MiddlewareAPI<{}>) => {
     return (next: Dispatch<{}>): Dispatch<{}> => {
-      return action => {
+      return async action => {
         /// tokenization
         if (action.type === FETCH_TOKEN) {
           /// Set token from state to http header
@@ -24,7 +24,7 @@ const oauth2TokenMiddleware = (fetchImplementation) => {
             temp = temp;
           }
 
-          return fetchImplementation(url, newParams);
+          return await fetchImplementation(url, newParams);
         }
 
         return next(action);
